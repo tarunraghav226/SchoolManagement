@@ -1,0 +1,45 @@
+{% extends 'student-dashboard.html' %}
+{% load static %}
+
+{% block home %}
+    <div class="container">
+        <div class="col-sm-12" style="display: flex;justify-content: center;align-items: center">
+            <nav class="navbar navbar-dark bg-dark">
+                <form class="form-inline">
+                    <div class="form-group" style="padding-right: 20px">
+                        <label for="exampleFormControlSelect" style="color: white;padding-right: 10px">Search
+                            Whom? </label>
+                        <select class="form-control" id="search">
+                            <option>Head</option>
+                            <option>Teacher</option>
+                            <option>Student</option>
+                        </select>
+                    </div>
+                    <input class="form-control mr-sm-2" type="search" placeholder="ID" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </nav>
+        </div>
+        <div class="col-sm-12">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-8 w-75 p-3">
+                        <img src="{% static 'user.jpeg' %}"
+                             style="border-radius: 100px;z-index: 2;position: relative;left: 50%;top:50%;transform: translate(-50%,50%)"
+                             class="img-fluid" id="detail-img">
+                        <div style="border:2px solid black;padding: 30px;margin: 40px;">
+                            <label for="Name">Name </label><span> Student name</span><br>
+                            <label for="Name">Class </label><span> Student class</span><br>
+                            <label for="Name">Roll Number</label><span> Roll Number</span><br>
+                            <label for="Name">Class Teacher</label><span> Teacher name</span><br>
+                            <label for="Name">Subjects</label><span> <ul>
+            <li>subject name</li>
+        </ul></span><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

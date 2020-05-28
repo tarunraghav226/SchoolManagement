@@ -1,0 +1,52 @@
+{% extends 'student-dashboard.html' %}
+{% load static %}
+{% block home %}
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {'packages': ['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Term', 'Percentage'],
+                ['Ist', 100],
+                ['IInd', 70],
+                ['Final', 50]
+            ]);
+
+            var options = {
+                title: 'Your progress report',
+                curveType: 'function',
+                legend: {position: 'bottom'}
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+            chart.draw(data, options);
+        }
+    </script>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div id="curve_chart" class="col-sm-12 p-3 img-fluid w-100"></div>
+        </div>
+        <div class="row">
+            <div class="subjects">
+                <span>Subject Code </span> <span> Subject name </span> <span> Teacher name</span>
+                <span><button class="btn btn-success" type="button" data-toggle="collapse"
+                              data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"
+                              style="float: right;border-radius: 10px ">
+                >
+            </button></span>
+                <div class="collapse" id="collapseExample" style="margin-top: 10px">
+                    <div class="card card-body" style="border: none;margin-top: 5px">
+                        <span>Term Ist  10/10</span>
+                        <span>Term IInd  10/10</span>
+                        <span>Final Term  10/10</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

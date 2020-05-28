@@ -1,0 +1,29 @@
+{% extends 'student-dashboard.html' %}
+{% load static %}
+
+{% block home %}
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap');
+    </style>
+    <div class="container">
+        <div class="row" style="margin-top: 40px;padding: 40px">
+            <div class="col-sm-6" style="display: flex;justify-content: center;align-items: center">
+                <h3><span
+                        style="font-family: 'Chelsea Market', cursive;">Welcome to your school management web app.</span>
+                </h3>
+            </div>
+            <div class="col-sm-6">
+                <img src="{% static 'undraw_online_test_gba7.svg' %}" class="img-fluid">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <img src="{% static 'undraw_knowledge_g5gf.svg' %}" class="img-fluid">
+            </div>
+            <div class="col-sm-6" style="display: flex;justify-content: center;align-items: center">
+                <h3><span style="font-family: 'Chelsea Market', cursive;">Here you will can see all your result and other stuff.</span>
+                </h3>
+            </div>
+        </div>
+    </div>
+{% endblock %}
