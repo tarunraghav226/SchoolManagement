@@ -18,9 +18,8 @@
                     <form class="col-sm-8 w-75 p-3">
                         <img src="{% static 'user.jpeg' %}"
                              style="border-radius: 100px;z-index: 2;position: relative;left: 50%;top:50%;transform: translate(-50%,50%)"
-                             class="img-fluid" id="detail-img">
-                        <div style="border:2px solid black;padding: 30px;margin: 40px;">
-                            <input type="file" name="student-image"><br>
+                             class="img-fluid student-image" id="detail-img">
+                        <div class="form-border">
                             <input type="text" name="student-id" value="12" hidden>
                             <label for="Name">Name </label><span style="margin-left: 10px"> <input type="text"
                                                                                                    name="student-name"
@@ -41,18 +40,20 @@
                             <label for="Name">Subjects</label>
                             <span>
                         <ul>
-                            <li><span style="margin-right: 10px">Subject Name</span><span style="margin-right: 10px">Ist Term</span><span
-                                    style="margin-right: 10px">IInd Term</span><span>Final</span></li>
                             <li><span style="margin-right: 10px">Subject Name</span>
-                                <span style="margin-right: 30px"><input style="width: 30px" type="number"
-                                                                        name="subjectName-mid1" value="0"></span>
-                                <span style="margin-right: 40px"><input style="width: 30px" type="number"
-                                                                        name="subjectName-mid2" value="0"></span>
-                                <span><input style="width: 30px" type="number" name="subjectName-final"
-                                             value="0"></span>
+                                <span style="margin-right: 10px ;display: block">Ist Term <input style="width: 30px"
+                                                                                                 type="number"
+                                                                                                 name="subjectName-mid1" value="0"></span>
+                                <span style="margin-right: 10px;display: block">IInd Term <input style="width: 30px"
+                                                                                                 type="number"
+                                                                                                 name="subjectName-mid2" value="0"></span>
+                                <span style="display:block;">Final <input style="width: 30px" type="number"
+                                                                          name="subjectName-final"
+                                                                          value="0"></span>
                             </li>
                         </ul>
                     </span><br>
+                            Upload photo of student: <input type="file" name="student-image"><br>
                             <button class="btn btn-outline-success my-2 my-sm-0" formaction="#">Update</button>
                         </div>
                     </form>

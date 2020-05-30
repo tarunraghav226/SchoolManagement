@@ -67,8 +67,26 @@ a:link {
     margin: 5px;
 }
 
+.form-border {
+    border: 2px solid black;
+    padding: 30px;
+    margin: 40px;
+}
+
 @media only screen and (max-width: 808px) {
     #detail-img {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 938px) {
+    .form-border {
+        border: none;
+        padding: 0px;
+        margin: 0px;
+    }
+
+    .student-image {
         display: none;
     }
 }
