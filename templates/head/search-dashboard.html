@@ -1,0 +1,75 @@
+{% extends 'head/head-dashboard.html' %}
+{% load static %}
+
+{% block home %}
+    <div class="container">
+        <div class="col-sm-12" style="display: flex;justify-content: center;align-items: center">
+            <nav class="navbar navbar-dark bg-dark">
+                <form class="form-inline">
+                    <div class="form-group" style="padding-right: 20px">
+                        <label for="exampleFormControlSelect" style="color: white;padding-right: 10px">Search
+                            Whom? </label>
+                        <select class="form-control" id="search">
+                            <option>Head</option>
+                            <option>Teacher</option>
+                            <option>Student</option>
+                        </select>
+                    </div>
+                    <input class="form-control mr-sm-2" type="search" placeholder="ID" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </nav>
+        </div>
+        <div class="col-sm-12">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4"></div>
+                    <form class="col-sm-8 w-75 p-3">
+                        <img src="{% static 'user.jpeg' %}"
+                             style="border-radius: 100px;z-index: 2;position: relative;left: 50%;top:50%;transform: translate(-50%,50%)"
+                             class="img-fluid student-image" id="detail-img">
+                        <div class="form-border">
+                            <input type="text" name="student-id" value="12" hidden>
+                            <label for="Name">Name </label><span style="margin-left: 10px"> <input type="text"
+                                                                                                   name="student-name"
+                                                                                                   value="Student name"
+                                                                                                   style="background: rgba(251,252,250,0.33);border: none"></span><br>
+                            <label for="Name">Class </label><span style="margin-left: 10px"><input type="text"
+                                                                                                   name="student-name"
+                                                                                                   value="Student class"
+                                                                                                   style="background: rgba(251,252,250,0.33);border: none"></span><br>
+                            <label for="Name">Roll Number</label><span style="margin-left: 10px"><input type="text"
+                                                                                                        name="student-name"
+                                                                                                        value="Roll number"
+                                                                                                        style="background: rgba(251,252,250,0.33);border: none"></span><br>
+                            <label for="Name">Class Teacher</label><span style="margin-left: 10px"><input type="text"
+                                                                                                          name="student-name"
+                                                                                                          value="Techer Name"
+                                                                                                          style="background: rgba(251,252,250,0.33);border: none"></span><br>
+                            <label for="Name">Subjects</label>
+                            <span>
+                        <ul>
+                            <li><span style="margin-right: 10px">Subject Name</span>
+                                <span style="margin-right: 10px ;display: block">Ist Term <input style="width: 30px"
+                                                                                                 type="number"
+                                                                                                 name="subjectName-mid1"
+                                                                                                 value="0"></span>
+                                <span style="margin-right: 10px;display: block">IInd Term <input style="width: 30px"
+                                                                                                 type="number"
+                                                                                                 name="subjectName-mid2"
+                                                                                                 value="0"></span>
+                                <span style="display:block;">Final <input style="width: 30px" type="number"
+                                                                          name="subjectName-final"
+                                                                          value="0"></span>
+                            </li>
+                        </ul>
+                    </span><br>
+                            Upload photo of student: <input type="file" name="student-image"><br>
+                            <button class="btn btn-outline-success my-2 my-sm-0" formaction="#">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

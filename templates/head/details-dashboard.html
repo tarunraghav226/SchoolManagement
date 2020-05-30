@@ -1,0 +1,19 @@
+{% extends 'head/head-dashboard.html' %}
+{% load static %}
+{% block home %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-8 w-75 p-3">
+                <img src="{% static 'user.jpeg' %}"
+                     style="border-radius: 100px;z-index: 2;position: relative;left: 50%;top:50%;transform: translate(-50%,50%)"
+                     class="img-fluid" id="detail-img">
+                <div style="border:2px solid black;padding: 30px;margin: 40px;">
+                    <label for="Name">Name </label><span> Head name</span><br>
+                    <label for="Name">Designation</label><span> designation</span><br>
+                    <label for="Name">ID</label><span>id</span><br>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

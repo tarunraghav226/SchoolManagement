@@ -1,0 +1,41 @@
+{% extends 'head/head-dashboard.html' %}
+{% load static %}
+
+{% block home %}
+    <div class="container">
+        <div class="col-sm-12" style="display: flex;justify-content: center;align-items: center">
+        </div>
+        <div class="col-sm-12">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4"></div>
+                    <form class="col-sm-8 w-75 p-3">
+                        <div class="form-border">
+
+                            <label>ID of teacher : </label><span style="margin-left: 10px;display: block"><input
+                                type="text" name="teacher-id"
+                                style="background: rgba(251,252,250,0.33);border: none"></span>
+                            <label for="Name">Name </label><span style="margin-left: 10px;display: block"> <input
+                                type="text"
+                                name="teacher-name"
+                                value="Teacher name"
+                                style="background: rgba(251,252,250,0.33);border: none"></span><br><label for="Name">Class
+                            Teacher</label><span
+                                style="margin-left: 10px;display: block"><input
+                                type="text"
+                                name="class-teacher"
+                                value="None"
+                                style="background: rgba(251,252,250,0.33);border: none"></span><br>
+                            <label for="Name">Subjects</label>
+                            <span>
+                    </span><br>
+                            <label style="display: inline" for="student-image">Upload Photo of teacher : </label><input
+                                type="file" name="student-image"><br>
+                            <button class="btn btn-outline-success my-2 my-sm-0" formaction="#">Add</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
