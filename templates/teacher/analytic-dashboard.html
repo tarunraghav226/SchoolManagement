@@ -1,0 +1,19 @@
+{% extends 'teacher/teacher-dashboard.html' %}
+{% load static %}
+{% block home %}
+
+    <div class="container" style="margin-top: 20px">
+        <div class="row">
+            <div class="subjects">
+                <span><a href="#">Admin No</a></span>
+                <span> Student name </span>
+                <span>
+                    <form class="form-inline" style="display: inline">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"
+                                formaction="#">Delete</button>
+                    </form>
+                </span>
+            </div>
+        </div>
+    </div>
+{% endblock %}
