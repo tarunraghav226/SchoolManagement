@@ -14,7 +14,7 @@ class Student(models.Model):
         db_table = 'Student'
 
     def __str__(self):
-        return self.admission_number
+        return str(self.admission_number)
 
 
 class Subjects(models.Model):
@@ -50,4 +50,4 @@ class Marks(models.Model):
         db_table = 'Marks'
 
     def __str__(self):
-        return self.admission_number + " " + self.subject_code
+        return str(self.admission_number) + " " + self.subject_code
