@@ -4,7 +4,7 @@ from django.db import models
 
 
 class Student(models.Model):
-    admission_number = models.IntegerField(primary_key=True)
+    admission_number = models.CharField(max_length=10, primary_key=True)
     name = models.CharField(max_length=100)
     class_of_student = models.CharField(max_length=10)
     roll_number = models.IntegerField()
