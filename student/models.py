@@ -26,3 +26,13 @@ class Subjects(models.Model):
 
     def __str__(self):
         return self.subject_name
+
+
+class Class(models.Model):
+    class_name = models.CharField(max_length=10, primary_key=True)
+
+    class Meta:
+        db_table = 'Class'
+
+    def __str__(self):
+        return self.class_name
