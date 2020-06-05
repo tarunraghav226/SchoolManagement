@@ -8,7 +8,9 @@ class Student(models.Model):
     name = models.CharField(max_length=100)
     class_of_student = models.CharField(max_length=10)
     roll_number = models.IntegerField()
-    percentage = models.DecimalField(max_digits=5, decimal_places=2)
+    percentage_of_mid1 = models.DecimalField(max_digits=5, decimal_places=2, default=0)
+    percentage_of_mid2 = models.DecimalField(max_digits=5, decimal_places=2, default=0)
+    percentage_of_final = models.DecimalField(max_digits=5, decimal_places=2, default=0)
 
     class Meta:
         db_table = 'Student'
