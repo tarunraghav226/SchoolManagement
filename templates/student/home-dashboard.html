@@ -1,6 +1,24 @@
 {% extends 'student/student-dashboard.html' %}
 {% load static %}
 
+{% block user_image %}
+    <img src="/media/{{ user_detail.student_image }}" alt="user-image" class="img-fluid" style="border-radius: 50%"
+         width="50%">
+{% endblock %}
+
+{% block studentName %}
+    {{ user_detail.name }}
+{% endblock %}
+
+{% block studentClass %}
+    {{ user_detail.class_of_student }}
+{% endblock %}
+
+{% block studentRollNo %}
+    {{ user_detail.roll_number }}
+{% endblock %}
+
+
 {% block home %}
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap');

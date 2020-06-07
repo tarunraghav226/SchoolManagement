@@ -27,12 +27,16 @@
     <!-- side bar-->
     <div class="col-sm-2 slider" style="z-index:4;" id="mySidebar">
         <a style="text-align: center;display: flex;justify-content: center">
-            <img src="{% static 'user.jpeg' %}" alt="user-image" class="img-fluid" style="border-radius: 100px">
+            {% block user_image %}
+                <img src="/media/{{ user_detail.student_image }}" alt="user-image" class="img-fluid"
+                     style="border-radius: 50%" width="50%">
+            {% endblock %}
         </a>
-        <div class="student-detail-slider">Student Name</div>
-        <div class="student-detail-slider">Class</div>
-        <div class="student-detail-slider">Roll No</div>
-        <a href="" class="slider-options">Home</a>
+        <div class="student-detail-slider">{% block studentName %}{{ user_detail.name }}{% endblock %}</div>
+        <div class="student-detail-slider">
+            {% block studentClass %}{{ user_detail.class_of_student }}{% endblock %}</div>
+        <div class="student-detail-slider">{% block studentRollNo %}{{ user_detail.roll_number }}{% endblock %}</div>
+        <a href="/home/" class="slider-options">Home</a>
         <a href="/analytic-dashboard" class="slider-options">Dashboard</a>
         <a href="/details/" class="slider-options">Details</a>
         <a href="/search/" class="slider-options">Search</a>

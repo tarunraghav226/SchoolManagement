@@ -1,5 +1,23 @@
 {% extends 'student/student-dashboard.html' %}
 {% load static %}
+
+{% block user_image %}
+    <img src="/media/{{ user_detail.student_image }}" alt="user-image" class="img-fluid" style="border-radius: 100%"
+         width="50%">
+{% endblock %}
+
+{% block studentName %}
+    {{ user_detail.name }}
+{% endblock %}
+
+{% block studentRollNo %}
+    {{ user_detail.class_of_student }}
+{% endblock %}
+
+{% block studentClass %}
+    {{ user_detail.roll_number }}
+{% endblock %}
+
 {% block home %}
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
@@ -9,9 +27,9 @@
         function drawChart() {
             var data = google.visualization.arrayToDataTable([
                 ['Term', 'Percentage'],
-                ['Ist', 100],
-                ['IInd', 70],
-                ['Final', 50]
+                ['Ist', {{ user_detail.percentage_of_mid1 }}],
+                ['IInd', {{ user_detail.percentage_of_mid2 }}],
+                ['Final', {{ user_detail.percentage_of_final }}]
             ]);
 
             var options = {
@@ -31,22 +49,26 @@
             <div class="col-sm-4"></div>
             <div id="curve_chart" class="col-sm-12 p-3 img-fluid w-100"></div>
         </div>
-        <div class="row">
+        {% for subject in subjects %}
+            <div class="row" style="margin-top: 20px;">
             <div class="subjects">
-                <span>Subject Code </span> <span> Subject name </span> <span> Teacher name</span>
+                <span>Subject Code : {{ subject.subject_code }} </span>
+                <span>Teacher Name : {{ subject.subject_teacher }}</span>
                 <span><button class="btn btn-success" type="button" data-toggle="collapse"
-                              data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"
+                              data-target="#collapseExample{{ forloop.counter }}" aria-expanded="false"
+                              aria-controls="collapseExample"
                               style="float: right;border-radius: 10px ">
                 >
             </button></span>
-                <div class="collapse" id="collapseExample" style="margin-top: 10px">
+                <div class="collapse" id="collapseExample{{ forloop.counter }}" style="margin-top: 10px">
                     <div class="card card-body" style="border: none;margin-top: 5px">
-                        <span>Term Ist  10/10</span>
-                        <span>Term IInd  10/10</span>
-                        <span>Final Term  10/10</span>
+                        <span>Term Ist  {{ subject.mid1 }}/10</span>
+                        <span>Term IInd  {{ subject.mid2 }}/10</span>
+                        <span>Final Term  {{ subject.final }}/10</span>
                     </div>
                 </div>
             </div>
         </div>
+        {% endfor %}
     </div>
 {% endblock %}

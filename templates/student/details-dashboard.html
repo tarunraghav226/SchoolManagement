@@ -1,20 +1,40 @@
 {% extends 'student/student-dashboard.html' %}
 {% load static %}
+
+{% block user_image %}
+    <img src="/media/{{ user_detail.student_image }}" alt="user-image" class="img-fluid" style="border-radius: 100%"
+         width="50%">
+{% endblock %}
+
+{% block studentName %}
+    {{ user_detail.name }}
+{% endblock %}
+
+{% block studentRollNo %}
+    {{ user_detail.class_of_student }}
+{% endblock %}
+
+{% block studentClass %}
+    {{ user_detail.roll_number }}
+{% endblock %}
+
 {% block home %}
     <div class="container">
         <div class="row">
             <div class="col-sm-4"></div>
             <div class="col-sm-8 w-75 p-3">
-                <img src="{% static 'user.jpeg' %}"
-                     style="border-radius: 100px;z-index: 2;position: relative;left: 50%;top:50%;transform: translate(-50%,50%)"
+                <img src="/media/{{ user_detail.student_image }}"
+                     style="border-radius: 100%;z-index: 2;position: relative;left: 50%;top:50%;transform: translate(-50%,50%);width: 20%;"
                      class="img-fluid" id="detail-img">
                 <div style="border:2px solid black;padding: 30px;margin: 40px;">
-                    <label for="Name">Name </label><span> Student name</span><br>
-                    <label for="Name">Class </label><span> Student class</span><br>
-                    <label for="Name">Roll Number</label><span> Roll Number</span><br>
-                    <label for="Name">Class Teacher</label><span> Teacher name</span><br>
+                    <label for="Name">Name </label><span> {{ user_detail.name }}</span><br>
+                    <label for="Name">Class </label><span> {{ user_detail.class_of_student }}</span><br>
+                    <label for="Name">Roll Number</label><span> {{ user_detail.roll_number }}</span><br>
+                    <label for="Name">Class Teacher</label><span> class teacher</span><br>
                     <label for="Name">Subjects</label><span> <ul>
-            <li>subject name</li>
+                    {% for subject in subjects %}
+                        <li>{{ subject }}</li>
+                    {% endfor %}
         </ul></span><br>
                 </div>
             </div>
