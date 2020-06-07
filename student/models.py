@@ -11,6 +11,7 @@ class Student(models.Model):
     percentage_of_mid1 = models.DecimalField(max_digits=5, decimal_places=2, default=0)
     percentage_of_mid2 = models.DecimalField(max_digits=5, decimal_places=2, default=0)
     percentage_of_final = models.DecimalField(max_digits=5, decimal_places=2, default=0)
+    student_image = models.ImageField(upload_to='student_image', default='user.jpeg')
 
     class Meta:
         db_table = 'Student'
