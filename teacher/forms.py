@@ -73,7 +73,8 @@ class AddStudentForm(forms.Form):
             raise ValidationError('')
         except ValidationError:
             raise ValidationError('Student with Admission Number already exist.')
-        return self.cleaned_data['admission_number']
+        except Exception:
+            return self.cleaned_data['admission_number']
 
     def clean_class_of_student(self):
         try:
