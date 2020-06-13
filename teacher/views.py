@@ -1,8 +1,9 @@
 # Create your views here.
 from django.contrib import messages
-from django.shortcuts import render
+from django.contrib.auth.models import User
+from django.shortcuts import render, redirect
 
-from student.models import Student, Subjects
+from student.models import Student, Subjects, Marks
 from teacher.forms import AddStudentForm
 from teacher.models import Teacher, Teaches
 
@@ -17,7 +18,8 @@ def analytic_dashboard(request):
     context = {}
     context['user_detail'] = Teacher.objects.get(teacher_id=request.user.username)
     if context['user_detail'].class_teacher_of != 'none':
-        context['students_in_class'] = Student.objects.filter(class_of_student=context['user_detail'].class_teacher_of)
+        context['students_in_class'] = Student.objects.filter(class_of_student=context['user_detail'].class_teacher_of) \
+            .order_by('name')
     return render(request, 'teacher/analytic-dashboard.html', context)
 
 
@@ -59,3 +61,11 @@ def add_new_student(request):
         messages.info(request, 'Student Admission Number - Not added')
         return render(request, 'teacher/add-student.html', context)
     return render(request, 'teacher/add-student.html', context)
+
+
+def delete(request):
+    user_id = request.POST['id']
+    Marks.objects.filter(admission_number=user_id).delete()
+    User.objects.get(username=user_id).delete()
+    Student.objects.get(admission_number=user_id).delete()
+    return redirect('/teacher/analytic-dashboard/')
