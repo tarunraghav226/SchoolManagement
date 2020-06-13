@@ -44,9 +44,9 @@ class Class(models.Model):
 class Marks(models.Model):
     admission_number = models.IntegerField()
     subject_code = models.CharField(max_length=10)
-    mid1 = models.DecimalField(max_digits=5, decimal_places=2)
-    mid2 = models.DecimalField(max_digits=5, decimal_places=2)
-    final = models.DecimalField(max_digits=5, decimal_places=2)
+    mid1 = models.DecimalField(max_digits=5, decimal_places=2, default=0)
+    mid2 = models.DecimalField(max_digits=5, decimal_places=2, default=0)
+    final = models.DecimalField(max_digits=5, decimal_places=2, default=0)
     subject_teacher = models.CharField(max_length=20)
 
     class Meta:
