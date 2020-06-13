@@ -47,7 +47,7 @@ class Marks(models.Model):
     mid1 = models.DecimalField(max_digits=5, decimal_places=2, default=0)
     mid2 = models.DecimalField(max_digits=5, decimal_places=2, default=0)
     final = models.DecimalField(max_digits=5, decimal_places=2, default=0)
-    subject_teacher = models.CharField(max_length=20)
+    subject_teacher = models.CharField(max_length=20, default='Not Assigned')
 
     class Meta:
         db_table = 'Marks'
