@@ -28,3 +28,14 @@ class Teaches(models.Model):
 
     def __str__(self):
         return self.teacher_id + ' ' + self.subject_code
+
+
+class ClassAndSubject(models.Model):
+    class_name = models.CharField(max_length=10)
+    subject_code = models.CharField(max_length=10)
+
+    def __str__(self):
+        return 'Class-> ' + self.class_name + ' Subject Code-> ' + self.subject_code;
+
+    class Meta:
+        db_table = 'ClassAndSubject'
