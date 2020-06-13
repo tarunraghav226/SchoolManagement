@@ -1,7 +1,30 @@
 {% extends 'teacher/teacher-dashboard.html' %}
 {% load static %}
 
+{% block teacher_image %}
+    <img src="/media/{{ user_detail.teacher_image }}" alt="user-image" class="img-fluid"
+         style="border-radius: 100%; width: 100px;height: 100px">
+{% endblock %}
+
+{% block teacher_name %}
+    {{ user_detail.teacher_name }}
+{% endblock %}
+
+{% block teacher_id %}
+    {{ user_detail.teacher_id }}
+{% endblock %}
+
+
 {% block home %}
+    {% if messages %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 20px">
+            <strong>Successfully Added Student!</strong> {% for message in messages %}{{ message }} {% endfor %}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endif %}
+
     <div class="container">
         <div class="col-sm-12" style="display: flex;justify-content: center;align-items: center">
         </div>
@@ -9,53 +32,14 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-4"></div>
-                    <form class="col-sm-8 w-75 p-3">
+                    <form class="col-sm-8 w-75 p-3" enctype="multipart/form-data" method="POST">
+                        {% csrf_token %}
                         <div class="form-border">
-
-                            <label>Admission Number of Student : </label><span style="margin-left: 10px;display: block"><input
-                                type="text" name="student-admission-number"
-                                style="background: rgba(251,252,250,0.33);border: none"></span>
-                            <label for="Name">Name </label><span style="margin-left: 10px;display: block"> <input
-                                type="text"
-                                name="student-name"
-                                value="Student name"
-                                style="background: rgba(251,252,250,0.33);border: none"></span><br><label for="Name">Class </label><span
-                                style="margin-left: 10px;display: block"><input
-                                type="text"
-                                name="student-name"
-                                value="Student class"
-                                style="background: rgba(251,252,250,0.33);border: none"></span><br>
-                            <label for="Name">Roll Number</label><span style="margin-left: 10px;display: block"><input
-                                type="text"
-                                name="student-name"
-                                value="Roll number"
-                                style="background: rgba(251,252,250,0.33);border: none"></span><br>
-                            <label for="Name">Class Teacher</label><span style="margin-left: 10px;display: block"><input
-                                type="text"
-                                name="student-name"
-                                value="Techer Name"
-                                style="background: rgba(251,252,250,0.33);border: none"></span><br>
-                            <label for="Name">Subjects</label>
-                            <span>
-                        <ul>
-                            <li><span style="margin-right: 10px">Subject Name</span>
-                                <span style="margin-right: 10px ;display: block">Ist Term <input style="width: 30px"
-                                                                                                 type="number"
-                                                                                                 name="subjectName-mid1"
-                                                                                                 value="0"></span>
-                                <span style="margin-right: 10px;display: block">IInd Term <input style="width: 30px"
-                                                                                                 type="number"
-                                                                                                 name="subjectName-mid2"
-                                                                                                 value="0"></span>
-                                <span style="display:block;">Final <input style="width: 30px" type="number"
-                                                                          name="subjectName-final"
-                                                                          value="0"></span>
-                            </li>
-                        </ul>
-                    </span><br>
-                            <label style="display: inline" for="student-image">Upload Photo of student : </label><input
-                                type="file" name="student-image"><br>
-                            <button class="btn btn-outline-success my-2 my-sm-0" formaction="#">Add</button>
+                            {{ form.as_p }}
+                            <br>
+                            <button class="btn btn-outline-success my-2 my-sm-0" formaction="/teacher/add_new_student/">
+                                Add
+                            </button>
                         </div>
                     </form>
                 </div>
