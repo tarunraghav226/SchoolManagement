@@ -3,7 +3,7 @@ from django.core.exceptions import ValidationError
 
 from student.models import Student
 
-choice = (('Head', 'Head'), ('Teacher', 'Teacher'), ('Student', 'Student'))
+choice = (('Teacher', 'Teacher'), ('Student', 'Student'))
 
 
 class LoginForm(forms.Form):

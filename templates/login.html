@@ -22,27 +22,16 @@
       </div>
       <div class="col-sm-6 ">
           <!-- form -->
-          <form class="w-100 p-4 login-box" style="background-image: url('{% static 'wave.svg' %}')">
-                <h3>Login Here</h3>
-                <div class="form-group">
-                    <label for="exampleFormControlSelect">Login As</label>
-                    <select class="form-control" id="login as">
-                      <option>Head</option>
-                      <option>Teacher</option>
-                      <option>Student</option>
-                    </select>
-                </div>
-              <div class="form-group">
-                <label for="exampleInputID">ID</label>
-                <input type="text" class="form-control" id="userID" aria-describedby="idHelp" placeholder="User ID">
-              </div>
-              <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-              </div>
-              <button type="submit" class="btn btn-primary" formaction="/dashboard/">Submit</button>
-            </form>
-          <!-- end fo form -->
+          <form class="w-100 p-4 login-box" style="background-image: url('{% static 'wave.svg' %}')" method="post">
+              {% csrf_token %}
+              <h3>Login Here</h3>
+              {% for message in messages %}
+                  <h3>{{ message }}</h3>
+              {% endfor %}
+              {{ login_form.as_p }}
+              <button type="submit" class="btn btn-primary" formaction="/login/">Submit</button>
+          </form>
+          <!-- end of form -->
       </div>
     </div>
     <!-- end of display screen -->
