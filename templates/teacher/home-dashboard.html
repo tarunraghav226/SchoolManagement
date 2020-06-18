@@ -1,6 +1,19 @@
 {% extends 'teacher/teacher-dashboard.html' %}
 {% load static %}
 
+{% block teacher_image %}
+    <img src="/media/{{ user_detail.teacher_image }}" alt="user-image" class="img-fluid"
+         style="border-radius: 100%; width: 100px;height: 100px">
+{% endblock %}
+
+{% block teacher_name %}
+    {{ user_detail.teacher_name }}
+{% endblock %}
+
+{% block teacher_id %}
+    {{ user_detail.teacher_id }}
+{% endblock %}
+
 {% block home %}
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap');

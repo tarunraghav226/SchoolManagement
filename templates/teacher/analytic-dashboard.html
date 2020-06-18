@@ -29,7 +29,8 @@
         <div class="row">
             {% for student in students_in_class %}
             <div class="subjects">
-                <span><a href="#">{{ student.admission_number }}</a></span>
+                <span><a
+                        href="/teacher/search/{{ student.admission_number }}/">{{ student.admission_number }}</a></span>
                 <span> {{ student.name }} </span>
                 <span>
                     <form class="form-inline" style="display: inline" method="POST">

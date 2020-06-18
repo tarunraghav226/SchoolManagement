@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.core.files.images import get_image_dimensions
+from django.forms import formset_factory
 
 from student.models import Student, Class, Marks
 from teacher.models import ClassAndSubject
@@ -121,3 +122,71 @@ class AddStudentForm(forms.Form):
             object.save()
 
         return student
+
+
+class UpdationForm(forms.Form):
+    admission_number = forms.CharField(max_length=10,
+                                       widget=forms.TextInput(attrs={
+                                           'hidden': ''
+                                       }))
+    name = forms.CharField(max_length=100,
+                           label='Name',
+                           widget=forms.TextInput(attrs={
+                               'class': 'form-control',
+                               'placeholder': 'Name',
+                               'style': 'background: rgba(251,252,250,0.33);border: none'
+                           }))
+
+    class_of_student = forms.ChoiceField(choices=choice,
+                                         label='Class',
+                                         widget=forms.Select(attrs={
+                                             'class': 'form-control',
+                                             'placeholder': 'Class',
+                                             'style': 'background: rgba(251,252,250,0.33);border: none'
+                                         }
+                                         ))
+    roll_number = forms.IntegerField(label='Roll Number',
+                                     widget=forms.NumberInput(attrs={
+                                         'class': 'form-control',
+                                         'placeholder': 'Roll Number',
+                                         'style': 'background: rgba(251,252,250,0.33);border: none',
+                                         'min': '1'
+                                     }
+                                     ))
+
+    student_image = forms.ImageField(label='Student Image',
+                                     widget=forms.FileInput(attrs={
+                                         'class': 'form-control',
+                                         'placeholder': 'Image',
+                                         'style': 'background: rgba(251,252,250,0.33);border: none'
+                                     }), required=False)
+
+    def clean_student_image(self):
+        picture = self.cleaned_data['student_image']
+        if not picture:
+            return self.cleaned_data['student_image']
+        else:
+            w, h = get_image_dimensions(picture)
+            if w > 450:
+                raise ValidationError("Upload a max of 450px wide photo")
+            if h > 450:
+                raise ValidationError("Upload a photo of max height 450px")
+        return self.cleaned_data['student_image']
+
+
+class SubjectForm(forms.Form):
+    subject_code = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control',
+                                                                 'placeholder': 'Subject Code',
+                                                                 'readonly': ''
+                                                                 }))
+
+    mid1 = forms.DecimalField(max_digits=5, decimal_places=2, max_value=10, min_value=0,
+                              widget=forms.NumberInput(attrs={'class': 'form-control'}))
+    mid2 = forms.DecimalField(max_digits=5, decimal_places=2, max_value=10, min_value=0,
+                              widget=forms.NumberInput(attrs={'class': 'form-control'}))
+    final = forms.DecimalField(max_digits=5, decimal_places=2, max_value=100, min_value=0,
+                               widget=forms.NumberInput(attrs={'class': 'form-control'}))
+    subject_teacher = forms.CharField(max_length=20, widget=forms.TextInput(attrs={'class': 'form-control'}))
+
+
+Formset = formset_factory(SubjectForm, extra=0)
