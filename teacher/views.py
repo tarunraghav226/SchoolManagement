@@ -1,5 +1,6 @@
 # Create your views here.
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 
@@ -8,11 +9,13 @@ from teacher.forms import AddStudentForm, UpdationForm, Formset
 from teacher.models import Teacher, Teaches
 
 
+@login_required
 def home(request):
     context = {'user_detail': Teacher.objects.get(teacher_id=request.user.username)}
     return render(request, 'teacher/home-dashboard.html', context)
 
 
+@login_required
 def analytic_dashboard(request):
     context = {'user_detail': Teacher.objects.get(teacher_id=request.user.username)}
     if context['user_detail'].class_teacher_of != 'none':
@@ -21,6 +24,7 @@ def analytic_dashboard(request):
     return render(request, 'teacher/analytic-dashboard.html', context)
 
 
+@login_required
 def details(request):
     context = {'user_detail': Teacher.objects.get(teacher_id=request.user.username)}
     subject_list = []
@@ -30,11 +34,13 @@ def details(request):
     return render(request, 'teacher/details-dashboard.html', context)
 
 
+@login_required
 def add(request):
     context = {'user_detail': Teacher.objects.get(teacher_id=request.user.username), 'form': AddStudentForm()}
     return render(request, 'teacher/add-student.html', context)
 
 
+@login_required
 def add_new_student(request):
     form = AddStudentForm(request.POST, request.FILES)
     context = {'user_detail': Teacher.objects.get(teacher_id=request.user.username), 'form': form}
@@ -59,6 +65,7 @@ def generateListOfSubjectWithMarks(adm_no):
     return l
 
 
+@login_required
 def search(request, adm_no=0):
     context = {'user_detail': Teacher.objects.get(teacher_id=request.user.username)}
     if adm_no == 0 and request.GET.get('id') is None:
@@ -80,6 +87,7 @@ def search(request, adm_no=0):
     return render(request, 'teacher/search-dashboard.html', context)
 
 
+@login_required
 def update(request):
     if request.method == "POST":
         updationForm = UpdationForm(request.POST, request.FILES)
@@ -120,6 +128,7 @@ def update(request):
     return redirect('/teacher/search/')
 
 
+@login_required
 def delete(request):
     user_id = request.POST['id']
     Marks.objects.filter(admission_number=user_id).delete()

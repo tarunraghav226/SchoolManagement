@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
 # Create your views here.
@@ -5,17 +6,20 @@ from student.models import Student, Marks, Subjects
 from teacher.models import Teacher, Teaches
 
 
+@login_required
 def dashboard(request):
     context = {'user_detail': Student.objects.get(admission_number=request.user.username)}
     return render(request, 'student/home-dashboard.html', context)
 
 
+@login_required
 def analytic_dashboard(request):
     context = {'user_detail': Student.objects.get(admission_number=request.user.username),
                'subjects': Marks.objects.filter(admission_number=request.user.username)}
     return render(request, 'student/analytic-dashboard.html', context)
 
 
+@login_required
 def details(request):
     context = {'user_detail': Student.objects.get(admission_number=request.user.username)}
     subject_name = []
@@ -25,11 +29,13 @@ def details(request):
     return render(request, 'student/details-dashboard.html', context)
 
 
+@login_required
 def search(request):
     context = {'user_detail': Student.objects.get(admission_number=request.user.username), 'search': ''}
     return render(request, 'student/search-dashboard.html', context)
 
 
+@login_required
 def get_result(request):
     context = {'search': '', 'user_detail': Student.objects.get(admission_number=request.user.username)}
     try:
