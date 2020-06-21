@@ -23,7 +23,7 @@ from student import views as std_view
 from teacher import views as teacher_view
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+                  path('admin/', admin.site.urls),
                   path('login/', views.login_user),
                   path('logout/', views.logout_user),
                   path('', views.login_page),
