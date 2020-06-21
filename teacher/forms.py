@@ -117,8 +117,8 @@ class AddStudentForm(forms.Form):
 
         list_of_subjects = ClassAndSubject.objects.filter(class_name=self.cleaned_data['class_of_student'])
         for subject in list_of_subjects:
-            object = Marks(admission_number=self.cleaned_data['admission_number'],
-                           subject_code=subject.subject_code)
+            object = Marks.objects.create(admission_number=self.cleaned_data['admission_number'],
+                                          subject_code=subject.subject_code)
             object.save()
 
         return student

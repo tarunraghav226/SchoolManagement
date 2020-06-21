@@ -42,6 +42,11 @@ def details(request):
     for i in Marks.objects.filter(admission_number=request.user.username):
         subject_name.append(Subjects.objects.get(subject_code=i.subject_code).subject_name)
     context['subjects'] = subject_name
+    try:
+        context['class_teacher'] = Teacher.objects.get(
+            class_teacher_of=context['user_detail'].class_of_student).teacher_name
+    except:
+        context['class_teacher'] = 'N/A'
     return render(request, 'student/details-dashboard.html', context)
 
 
