@@ -12,21 +12,26 @@ def dashboard(request):
     return render(request, 'student/home-dashboard.html', context)
 
 
-def calculate_percentage(list_of_subject):
+def calculate_percentage(list_of_subject, term):
+    mul = 1
+    if term == 'm':
+        mul = 10
     percentage = 0
     for marks in list_of_subject:
         percentage += marks
-    return percentage / len(list_of_subject)
+    return (percentage * mul) / len(list_of_subject)
 
 
 @login_required
 def analytic_dashboard(request):
     context = {'user_detail': Student.objects.get(admission_number=request.user.username),
                'subjects': Marks.objects.filter(admission_number=request.user.username)}
-    context['user_detail'].percentage_of_mid1 = calculate_percentage([subject.mid1 for subject in context['subjects']])
-    context['user_detail'].percentage_of_mid2 = calculate_percentage([subject.mid2 for subject in context['subjects']])
+    context['user_detail'].percentage_of_mid1 = calculate_percentage([subject.mid1 for subject in context['subjects']],
+                                                                     'm')
+    context['user_detail'].percentage_of_mid2 = calculate_percentage([subject.mid2 for subject in context['subjects']],
+                                                                     'm')
     context['user_detail'].percentage_of_final = calculate_percentage(
-        [subject.final for subject in context['subjects']])
+        [subject.final for subject in context['subjects']], 'f')
     return render(request, 'student/analytic-dashboard.html', context)
 
 
