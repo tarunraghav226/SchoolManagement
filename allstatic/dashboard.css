@@ -1,0 +1,93 @@
+html {
+    height: 100%;
+    margin: 0px;
+}
+
+body {
+    height: 100%;
+    margin: 0px;
+    background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.slider-button {
+    background: none;
+    border: none;
+}
+
+.slider {
+    align-items: center;
+    background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+    height: auto;
+    padding-right: 0px;
+    padding-left: 0px;
+    position: sticky;
+    top: 0px;
+}
+
+.slider-options {
+    display: block;
+    padding: 8px;
+    text-align: center;
+}
+
+a:visited {
+    text-decoration: none
+}
+
+a:link {
+    text-decoration: none
+}
+
+.slider-options:hover {
+    background-color: grey;
+}
+
+.content {
+    grid-column-start: 2;
+}
+
+.subjects {
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 100%;
+    background-color: white;
+    margin-top: 10px;
+}
+
+.subjects span {
+    padding: 10px;
+    margin: 10px;
+}
+
+.student-detail-slider {
+    text-align: center;
+    padding: 5px;
+    margin: 5px;
+}
+
+.form-border {
+    border: 2px solid black;
+    padding: 30px;
+    margin: 40px;
+}
+
+@media only screen and (max-width: 808px) {
+    #detail-img {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 938px) {
+    .form-border {
+        border: none;
+        padding: 0px;
+        margin: 0px;
+    }
+
+    .student-image {
+        display: none;
+    }
+}
