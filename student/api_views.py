@@ -44,6 +44,9 @@ class DashboardView(APIView):
 
 
 class SearchView(APIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+
     def post(self, request, *args, **kwargs):
 
         if request.POST.get('search_whom') == 'Student':
