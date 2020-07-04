@@ -20,6 +20,7 @@ from django.urls import path
 
 from SchoolManagement import views, settings
 from student import views as std_view
+from student.api_views import DashboardView
 from teacher import views as teacher_view
 
 urlpatterns = [
@@ -48,5 +49,10 @@ teacherpatterns = [
     path('teacher/update_student_data/', teacher_view.update)
 ]
 
+apipatterns = [
+    path('api/dashboard', DashboardView.as_view())
+]
+
 urlpatterns += studentpatterns
 urlpatterns += teacherpatterns
+urlpatterns += apipatterns
