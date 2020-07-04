@@ -21,7 +21,7 @@ from rest_framework.authtoken import views as api_auth_view
 
 from SchoolManagement import views, settings
 from student import views as std_view
-from student.api_views import DashboardView
+from student.api_views import DashboardView, SearchView
 from teacher import views as teacher_view
 
 urlpatterns = [
@@ -53,6 +53,7 @@ teacherpatterns = [
 apipatterns = [
     path('api-authenticate/', api_auth_view.obtain_auth_token),
     path('api/dashboard/', DashboardView.as_view()),
+    path('api/search/', SearchView.as_view())
 ]
 
 urlpatterns += studentpatterns
