@@ -17,6 +17,7 @@ from django.conf.urls import url
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
+from rest_framework.authtoken import views as api_auth_view
 
 from SchoolManagement import views, settings
 from student import views as std_view
@@ -50,7 +51,8 @@ teacherpatterns = [
 ]
 
 apipatterns = [
-    path('api/dashboard', DashboardView.as_view())
+    path('api-authenticate/', api_auth_view.obtain_auth_token),
+    path('api/dashboard/', DashboardView.as_view()),
 ]
 
 urlpatterns += studentpatterns

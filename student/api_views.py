@@ -1,4 +1,7 @@
+from rest_framework import permissions
 from rest_framework import status
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -21,12 +24,19 @@ class MarksView(APIView):
 
 
 class DashboardView(APIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request, *args, **kwargs):
-        student_serializer = StudentView.get(self, request, pk=1)
-        marks_serializer = MarksView.get(self, request, pk=1)
+        pk = self.get_pk(request)
+        student_serializer = StudentView.get(self, request, pk=pk)
+        marks_serializer = MarksView.get(self, request, pk=pk)
 
         student_serializer['subjects'] = marks_serializer
 
         student_serializer['student_image'] = SERVER_DOMAIN + student_serializer['student_image']
         return Response({'student': student_serializer}, status=status.HTTP_200_OK)
+
+    def get_pk(self, request):
+        token = request.headers['authorization'].split(' ')[1]
+        return Token.objects.get(key=token).user.username
