@@ -1,7 +1,9 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.signals import post_save
 # Create your models here.
 from django.dispatch import receiver
+from rest_framework.authtoken.models import Token
 
 
 class Student(models.Model):
@@ -66,6 +68,12 @@ def update_marks(sender, instance, created, **kwargs):
         student.percentage_of_mid2 = calculate_percentage([subject.mid2 for subject in subject_list], 'm')
         student.percentage_of_final = calculate_percentage([subject.final for subject in subject_list], 'f')
         student.save()
+
+
+@receiver(post_save, sender=User)
+def create_student_token(sender, instance, created, **kwargs):
+    if created:
+        Token.objects.create(user=instance).save()
 
 
 def calculate_percentage(list_of_subject, term):
